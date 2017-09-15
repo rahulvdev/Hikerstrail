@@ -1,3 +1,8 @@
+body{
+  
+  font-family: 'Bungee', cursive;
+}
+
 .row.display-flex {
   display: flex;
   flex-wrap: wrap;

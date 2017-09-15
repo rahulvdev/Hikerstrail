@@ -11,6 +11,11 @@ body {
 
 #landing-header h1 {
   color: #fff;
+  font-family: 'Anton', cursive;
+}
+
+#landing-header a{
+  font-family: 'Anton', cursive;
 }
 
 .slideshow { 
@@ -43,15 +48,15 @@ body {
   background-image: url(https://source.unsplash.com/D7_FyuUfaEo);
 }
 .slideshow li:nth-child(2) { 
-  background-image: url(https://source.unsplash.com/qbcAfJApLbE);
+  background-image: url(https://source.unsplash.com/UZtRU-lWZE4);
   animation-delay: 10s; 
 }
 .slideshow li:nth-child(3) { 
-  background-image: url(https://source.unsplash.com/UZtRU-lWZE4);
+  background-image: url(https://source.unsplash.com/Dwheufds6kQ);
   animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-  background-image: url(https://source.unsplash.com/6ARMiaPM);
+  background-image: url(https://source.unsplash.com/JMdgknOnV4c);
   animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
