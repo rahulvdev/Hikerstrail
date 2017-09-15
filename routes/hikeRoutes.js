@@ -1,32 +1,32 @@
 var express=require("express");
-var campground=require("../models/campground");
+var hikespot=require("../models/hikespot");
 var middleware=require("../middleware");
 var router=express.Router({mergeParams:true});
 
 router.get("/",function(req, res){
-    campground.find({},function(err, campgrounds){
+    hikespot.find({},function(err, hikespots){
         if(err){
            req.flash("error","Something went wrong");
         }
-        res.render("display",{campgrounds:campgrounds});
+        res.render("display",{hikespots:hikespots});
     });
 });
 
 
 router.get("/new",middleware.isLoggedIn,function(req, res){
-    res.render("newcamp");    
+    res.render("newspot");    
 });
 
 
 router.post("/",middleware.isLoggedIn,function(req, res){
-    campground.create(req.body.campsite,function(err, camp){
+    hikespot.create(req.body.hikesite,function(err, hikesite){
       if(err){
-          console.log("Camp not added to DB");
+          console.log("Hike Spot not added to DB");
         } 
       else{
-          camp.author.id=req.user._id;
-          camp.author.name=req.user.username;
-          camp.save();
+          hikesite.author.id=req.user._id;
+          hikesite.author.name=req.user.username;
+          hikesite.save();
           res.redirect("/hikespots");
       }
     });
@@ -35,35 +35,35 @@ router.post("/",middleware.isLoggedIn,function(req, res){
 
 router.get("/:id",middleware.isLoggedIn,function(req, res){
     var id=req.params.id;
-    campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
+    hikespot.findById(req.params.id).populate("comments").exec(function(err, foundHikeSpot){
        if(err){
            console.log("Could not display camp page");
        } 
        else{
-           res.render("campgroundpage",{camp:foundCampground});
+           res.render("hikespotpage",{hikesite:foundHikeSpot});
        }
     });
 });
 
 
-//Edit campground route
+//Edit Hikespot route
 router.get("/:id/edit",middleware.checkOwnership,function(req, res){
-    campground.findById(req.params.id,function(err, foundCamp){
+    hikespot.findById(req.params.id,function(err, foundHikeSpot){
         if(err){
             res.render("/hikespots");
         }
         else{
-            res.render("edit",{camp:foundCamp});
+            res.render("edit",{hikesite:foundHikeSpot});
         }
     });
 });
 
 
 
-//Update campground route
+//Update Hikespot  route
 router.put("/:id",middleware.checkOwnership,function(req, res){
     var id=req.params.id;
-    campground.findByIdAndUpdate(id,req.body.campsite,function(err, editedCampgound){
+    hikespot.findByIdAndUpdate(id,req.body.hikesite,function(err, editedHikeSpot){
        if(err){
            res.redirect("/hikespots/"+id);
        } 
@@ -75,7 +75,7 @@ router.put("/:id",middleware.checkOwnership,function(req, res){
 
 router.delete("/:id",middleware.checkOwnership,function(req, res){
     var id=req.params.id;
-    campground.findByIdAndRemove(id,function(err){
+    hikespot.findByIdAndRemove(id,function(err){
        if(err){
            res.redirect("/hikespots");
        } 

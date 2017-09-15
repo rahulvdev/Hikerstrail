@@ -1,16 +1,16 @@
-var campground=require("../models/campground");
+var hikespot=require("../models/hikespot");
 var comment=require("../models/comment");
 var middlewareObj={};
 
 middlewareObj.checkOwnership=function (req, res, next){
         if(req.isAuthenticated()){
-            campground.findById(req.params.id,function(err, foundCamp){
+            hikespot.findById(req.params.id,function(err, hikesite){
                 if(err){
                     req.flash("error","Campground not found");
                     res.redirect("back");
                 }
                 else{
-                    if(foundCamp.author.id.equals(req.user._id)){
+                    if(hikesite.author.id.equals(req.user._id)){
                         next();
                     }
                     else{

@@ -1,24 +1,24 @@
 <% include ./partials/header %>
-<h1>Edit <%= camp.name %></h1>
+<h1>Edit <%= hikesite.name %></h1>
 <div class="container">
     <div>
- <form action="/hikespots/<%= camp._id %>?_method=PUT" method="POST">
+ <form action="/hikespots/<%= hikesite._id %>?_method=PUT" method="POST">
   <div class="form-group">
     <label>Camp Name</label>
-    <input type="input" class="form-control"  name="campsite[name]" value="<%= camp.name %>">
+    <input type="input" class="form-control"  name="hikesite[name]" value="<%= hikesite.name %>">
   </div>
   <div class="form-group">
     <label>Image Url</label>
-    <input type="input" class="form-control" name="campsite[image]" value="<%= camp.image %>">
+    <input type="input" class="form-control" name="hikesite[image]" value="<%= hikesite.image %>">
   </div>
   <div class="form-group">
       <label>Camp Description</label>
-      <textarea rows="10" cols="10" name="campsite[description]"><%- camp.description %></textarea>
+      <textarea rows="10" cols="10" name="hikesite[description]"><%- hikesite.description %></textarea>
   </div>
   <div>
   <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-  <a href="/hikespots/<%= camp._id %>">Go back</a>
+  <a href="/hikespots/<%= hikesite._id %>">Go back</a>
 </form>
 </div>
 </div>

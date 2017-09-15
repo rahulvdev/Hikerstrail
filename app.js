@@ -12,7 +12,7 @@ var hikeRoute=require("./routes/hikeRoutes");
 var commentRoute=require("./routes/commentRoutes");
 var authRoute=require("./routes/authRoutes");
 mongoose.Promise=global.Promise;
-mongoose.connect("mongodb://localhost/yelpcamp",{useMongoClient: true});
+mongoose.connect("mongodb://localhost/hikerstrail",{useMongoClient: true});
 
 app.set("view engine", "ejs");
 app.use(body_parser.urlencoded({extended:true}));

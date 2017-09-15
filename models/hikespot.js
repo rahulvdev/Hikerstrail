@@ -2,7 +2,7 @@ var mongoose=require("mongoose");
 mongoose.Promise=global.Promise;
 
 
-var campgroundSchema=new mongoose.Schema({
+var hikespotSchema=new mongoose.Schema({
    author:{
       id:{
          type:mongoose.Schema.Types.ObjectId,
@@ -20,6 +20,6 @@ var campgroundSchema=new mongoose.Schema({
 });
 
 
-var campground=mongoose.model("campground",campgroundSchema);
+var hikespot=mongoose.model("hikespot",hikespotSchema);
 
-module.exports=campground;
+module.exports=hikespot;

@@ -1,5 +1,5 @@
 var express=require("express");
-var campground=require("../models/campground");
+var hikespot=require("../models/hikespot");
 var comment=require("../models/comment");
 var middleware=require("../middleware");
 var router=express.Router({mergeParams:true});
@@ -14,7 +14,7 @@ router.get("/new",middleware.isLoggedIn,function(req, res){
 
 router.post("/",middleware.isLoggedIn,function(req, res){
     var id=req.params.id;
-    campground.findById(id,function(err, camp){
+    hikespot.findById(id,function(err, hikesite){
         if(err){
             console.log("Could not display campground page");
         }
@@ -28,13 +28,13 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                    commentResult.author.id=req.user._id;
                    commentResult.author.name=req.user.username;
                    commentResult.save();
-                   camp.comments.push(commentResult);
-                   camp.save(function(err){
+                   hikesite.comments.push(commentResult);
+                   hikesite.save(function(err){
                     if(err){
                         console.log("Could not save camp object into the database");
                     }
                         req.flash("success","Comment succesfully added");
-                        res.redirect("/hikespots/"+camp._id);
+                        res.redirect("/hikespots/"+hikesite._id);
                  });
                }
             })
@@ -45,7 +45,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
 
 //Comment edit and delete routes
 router.get("/:comment_id/edit",middleware.checkCommentOwnership,function(req, res){
-    var campId=req.params.id;
+    var hikespotId=req.params.id;
     var comment_id=req.params.comment_id;
     comment.findById(comment_id,function(err, foundComment){
        if(err){
@@ -54,7 +54,7 @@ router.get("/:comment_id/edit",middleware.checkCommentOwnership,function(req, re
        }
        else{
            res.render("editComment",{
-                campId:campId,               
+                hikespotId:hikespotId,               
                 comment:foundComment});
        }
     });
