@@ -27,7 +27,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
           camp.author.id=req.user._id;
           camp.author.name=req.user.username;
           camp.save();
-          res.redirect("/campgrounds");
+          res.redirect("/hikespots");
       }
     });
 });
@@ -50,7 +50,7 @@ router.get("/:id",middleware.isLoggedIn,function(req, res){
 router.get("/:id/edit",middleware.checkOwnership,function(req, res){
     campground.findById(req.params.id,function(err, foundCamp){
         if(err){
-            res.render("/campgrounds");
+            res.render("/hikespots");
         }
         else{
             res.render("edit",{camp:foundCamp});
@@ -65,10 +65,10 @@ router.put("/:id",middleware.checkOwnership,function(req, res){
     var id=req.params.id;
     campground.findByIdAndUpdate(id,req.body.campsite,function(err, editedCampgound){
        if(err){
-           res.redirect("/campgrounds/"+id);
+           res.redirect("/hikespots/"+id);
        } 
        else{
-           res.redirect("/campgrounds/"+id);
+           res.redirect("/hikespots/"+id);
        }
     });
 });
@@ -77,10 +77,10 @@ router.delete("/:id",middleware.checkOwnership,function(req, res){
     var id=req.params.id;
     campground.findByIdAndRemove(id,function(err){
        if(err){
-           res.redirect("/campgrounds");
+           res.redirect("/hikespots");
        } 
        else{
-           res.redirect("/campgrounds")
+           res.redirect("/hikespots")
        }
     });
 });

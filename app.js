@@ -8,7 +8,7 @@ var user=require("./models/user");
 var body_parser=require("body-parser");
 var mongoose=require("mongoose");
 var methodOverride=require("method-override");
-var campgroundRoute=require("./routes/campgroundRoutes");
+var hikeRoute=require("./routes/hikeRoutes");
 var commentRoute=require("./routes/commentRoutes");
 var authRoute=require("./routes/authRoutes");
 mongoose.Promise=global.Promise;
@@ -44,8 +44,8 @@ app.use(function(req, res, next){
 });
 
 //Routes
-app.use("/campgrounds",campgroundRoute);
-app.use("/campgrounds/:id/comments",commentRoute);
+app.use("/hikespots",hikeRoute);
+app.use("/hikespots/:id/comments",commentRoute);
 app.use(authRoute);
 
 //Root route

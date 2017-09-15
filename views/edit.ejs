@@ -2,7 +2,7 @@
 <h1>Edit <%= camp.name %></h1>
 <div class="container">
     <div>
- <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="POST">
+ <form action="/hikespots/<%= camp._id %>?_method=PUT" method="POST">
   <div class="form-group">
     <label>Camp Name</label>
     <input type="input" class="form-control"  name="campsite[name]" value="<%= camp.name %>">
@@ -18,7 +18,7 @@
   <div>
   <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-  <a href="/campgrounds/<%= camp._id %>">Go back</a>
+  <a href="/hikespots/<%= camp._id %>">Go back</a>
 </form>
 </div>
 </div>

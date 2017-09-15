@@ -41,7 +41,7 @@ middlewareObj.checkCommentOwnership=function(req, res, next){
             comment.findById(req.params.comment_id,function(err, foundComment){
                 if(err){
                     req.flash("error","Comment not found");
-                    res.redirect("/campgrounds");
+                    res.redirect("/hikespots");
                 }
                 else{
                     if(foundComment.author.id.equals(req.user._id)){

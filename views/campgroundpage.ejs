@@ -15,8 +15,8 @@
                 <div class="caption-full">
                     <h4><%=camp.name %>,submitted by <%= camp.author.name%></h4>
                     <% if(currentUser && camp.author.id.equals(currentUser._id)){%>
-                    <a href="/campgrounds/<%= camp._id%>/edit"role="button" class="btn btn-warning btn-md">Edit</a>
-                    <form class="delete-form" action="/campgrounds/<%= camp._id%>?_method=DELETE" method="POST">
+                    <a href="/hikespots/<%= camp._id%>/edit"role="button" class="btn btn-warning btn-md">Edit</a>
+                    <form class="delete-form" action="/hikespots/<%= camp._id%>?_method=DELETE" method="POST">
                        <button class="btn btn-danger">Delete</button>
                        <% } %>
                     </form>
@@ -25,7 +25,7 @@
             </div>
             <div class="well">
                 <div class="text-right">
-                    <a class="btn btn-success" href="/campgrounds/<%= camp._id %>/comments/new">Add New Comment</a>
+                    <a class="btn btn-success" href="/hikespots/<%= camp._id %>/comments/new">Add New Comment</a>
                 </div>
                 <hr>
                 <% camp.comments.forEach(function(comment){ %>
@@ -37,8 +37,8 @@
                                 <%= comment.post %> 
                             </p>
                             <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-                            <a class="btn btn-warning btn-xs" href="/campgrounds/<%= camp._id %>/comments/<%= comment._id %>/edit">Edit</a>
-                            <form class="delete-form" action="/campgrounds/<%= camp._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <a class="btn btn-warning btn-xs" href="/hikespots/<%= camp._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                            <form class="delete-form" action="/hikespots/<%= camp._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
                             <button class="btn btn-danger btn-xs">Delete</a>
                             </form>
                             <% }%>

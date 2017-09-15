@@ -34,7 +34,7 @@ router.post("/",middleware.isLoggedIn,function(req, res){
                         console.log("Could not save camp object into the database");
                     }
                         req.flash("success","Comment succesfully added");
-                        res.redirect("/campgrounds/"+camp._id);
+                        res.redirect("/hikespots/"+camp._id);
                  });
                }
             })
@@ -50,7 +50,7 @@ router.get("/:comment_id/edit",middleware.checkCommentOwnership,function(req, re
     comment.findById(comment_id,function(err, foundComment){
        if(err){
            req.flash("error","You do not have permission to do that");
-            res.redirect("/campgrounds/"+req.params.id);
+            res.redirect("/hikespots/"+req.params.id);
        }
        else{
            res.render("editComment",{
@@ -66,10 +66,10 @@ router.put("/:comment_id",middleware.checkCommentOwnership,function(req, res){
     var comment_id=req.params.comment_id;
     comment.findByIdAndUpdate(comment_id,req.body.comment,function(err, foundComment){
         if(err){
-            res.redirect("/campgrounds/"+req.params.id);
+            res.redirect("/hikespots/"+req.params.id);
         }
         else{
-            res.redirect("/campgrounds/"+req.params.id);
+            res.redirect("/hikespots/"+req.params.id);
         }
     });
 });
@@ -80,10 +80,10 @@ router.delete("/:comment_id",middleware.checkCommentOwnership,function(req, res)
     var comment_id=req.params.comment_id;
     comment.findByIdAndRemove(comment_id,function(err){
        if(err){
-           res.redirect("/campgrounds/"+req.params.id);
+           res.redirect("/hikespots/"+req.params.id);
        } 
        else{
-           res.redirect("/campgrounds/"+req.params.id);
+           res.redirect("/hikespots/"+req.params.id);
        }
     });
 });
