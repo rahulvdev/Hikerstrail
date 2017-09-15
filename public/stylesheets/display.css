@@ -1,0 +1,40 @@
+.row.display-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row.display-flex > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+#viewground{
+    text-align:center;
+}
+
+#viewground a{
+    text-align:center;
+}
+.thumbnail .indivCamp{
+  height:70%;
+}
+
+.form-group textarea{
+  width:100%;
+}
+
+.navbar-dark{
+  background-color: #343a40;  
+}
+
+.navbar a{
+  color:white;
+}
+
+ul{
+  color:#343a40;
+}
+
+.delete-form{
+  display:inline;
+}
+

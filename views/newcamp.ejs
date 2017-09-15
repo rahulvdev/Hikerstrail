@@ -1,0 +1,23 @@
+<% include ./partials/header %>
+
+<div class="container">
+    <div>
+ <form action="/campgrounds" method="POST">
+  <div class="form-group">
+    <label>Camp Name</label>
+    <input type="input" class="form-control"  name="campsite[name]" placeholder="Camp Name">
+  </div>
+  <div class="form-group">
+    <label>Image Url</label>
+    <input type="input" class="form-control" name="campsite[image]" placeholder="Image Url">
+  </div>
+  <div class="form-group">
+      <label>Camp Description</label>
+      <textarea rows="10" cols="10" name="campsite[description]"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</div>
+
+<% include ./partials/footer %>
