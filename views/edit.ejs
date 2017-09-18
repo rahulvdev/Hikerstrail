@@ -1,6 +1,6 @@
 <% include ./partials/header %>
-<h1>Edit <%= hikesite.name %></h1>
 <div class="container">
+  <h1>Edit <%= hikesite.name %></h1>
     <div>
  <form action="/hikespots/<%= hikesite._id %>?_method=PUT" method="POST">
   <div class="form-group">

@@ -19,6 +19,7 @@ app.use(body_parser.urlencoded({extended:true}));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+app.locals.moment = require('moment');
 
 //Passport configuration
 app.use(expressSession({
