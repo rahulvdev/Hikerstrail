@@ -1,6 +1,7 @@
 var express=require("express");
 var hikespot=require("../models/hikespot");
 var middleware=require("../middleware");
+var geocoder=require("geocoder");
 var router=express.Router({mergeParams:true});
 
 router.get("/",function(req, res){
@@ -19,17 +20,28 @@ router.get("/new",middleware.isLoggedIn,function(req, res){
 
 
 router.post("/",middleware.isLoggedIn,function(req, res){
-    hikespot.create(req.body.hikesite,function(err, hikesite){
-      if(err){
-          console.log("Hike Spot not added to DB");
-        } 
-      else{
-          hikesite.author.id=req.user._id;
-          hikesite.author.name=req.user.username;
-          hikesite.save();
-          res.redirect("/hikespots");
-      }
+  var name = req.body.name;
+  var image = req.body.image;
+  var desc = req.body.description;
+  var author = {
+      id: req.user._id,
+      name: req.user.username
+  }
+  geocoder.geocode(req.body.location, function (err, data) {
+    var lat = data.results[0].geometry.location.lat;
+    var lng = data.results[0].geometry.location.lng;
+    var location = data.results[0].formatted_address;
+    var newHikeSpot = {name: name, image: image, description: desc, author:author, location: location, lat: lat, lng: lng};
+    // Create a new campground and save to DB
+    hikespot.create(newHikeSpot, function(err, newlyCreated){
+        if(err){
+            console.log(err);
+        } else {
+            //redirect back to Hike Spots page
+            res.redirect("/hikespots");
+        }
     });
+  });
 });
 
 
@@ -62,15 +74,21 @@ router.get("/:id/edit",middleware.checkOwnership,function(req, res){
 
 //Update Hikespot  route
 router.put("/:id",middleware.checkOwnership,function(req, res){
-    var id=req.params.id;
-    hikespot.findByIdAndUpdate(id,req.body.hikesite,function(err, editedHikeSpot){
-       if(err){
-           res.redirect("/hikespots/"+id);
-       } 
-       else{
-           res.redirect("/hikespots/"+id);
-       }
+    geocoder.geocode(req.body.location, function (err, data) {
+    var lat = data.results[0].geometry.location.lat;
+    var lng = data.results[0].geometry.location.lng;
+    var location = data.results[0].formatted_address;
+    var newData = {name: req.body.name, image: req.body.image, description: req.body.description, location: location, lat: lat, lng: lng};
+    hikespot.findByIdAndUpdate(req.params.id, {$set: newData}, function(err, hikesite){
+        if(err){
+            req.flash("error", err.message);
+            res.redirect("back");
+        } else {
+            req.flash("success","Successfully Updated!");
+            res.redirect("/hikespots/" + hikesite._id);
+        }
     });
+  });
 });
 
 router.delete("/:id",middleware.checkOwnership,function(req, res){

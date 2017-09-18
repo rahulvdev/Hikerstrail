@@ -5,15 +5,19 @@
  <form action="/hikespots" method="POST">
   <div class="form-group">
     <label>Camp Name</label>
-    <input type="input" class="form-control"  name="hikesite[name]" placeholder="Hikespot Name">
+    <input type="input" class="form-control"  name="name" placeholder="Hikespot Name">
   </div>
   <div class="form-group">
     <label>Image Url</label>
-    <input type="input" class="form-control" name="hikesite[image]" placeholder="Image Url">
+    <input type="input" class="form-control" name="image" placeholder="Image Url">
+  </div>
+  <div class="form-group">
+    <label for="location">Location</label>
+    <input class="form-control" type="text" name="location" id="location" placeholder="Yosemite National Park, CA">
   </div>
   <div class="form-group">
       <label>Hikespot Description</label>
-      <textarea rows="10" cols="10" name="hikesite[description]"></textarea>
+      <textarea rows="10" cols="10" name="description"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

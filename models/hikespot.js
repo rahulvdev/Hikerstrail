@@ -12,6 +12,9 @@ var hikespotSchema=new mongoose.Schema({
    },
    name:String,
    image:String,
+   location:String,
+   lat:Number,
+   lng:Number,
    description:String,
    comments:[{
        type:mongoose.Schema.Types.ObjectId,
